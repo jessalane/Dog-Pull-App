@@ -1,0 +1,129 @@
+/* Resetting some default styles and setting global styles */
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FAFAFA; /* Ivory White for main background */
+    color: #5D4037; /* Primary Brown for regular text */
+    font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', 'Raleway', 'Segoe UI', 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #0288D1; /* Accent Blue */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #D32F2F; /* Tertiary Red */
+    color: #FAFAFA; /* Ivory White */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #B71C1C; /* Darker Tertiary Red */
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Color Utility Classes */
+.primaryBrown {
+    background-color: #5D4037;
+    color: #FAFAFA;
+}
+
+.secondaryGold {
+    background-color: #FFC107;
+    color: #5D4037;
+}
+
+.tertiaryRed {
+    background-color: #D32F2F;
+    color: #FAFAFA;
+}
+
+.accentGreen {
+    background-color: #689F38;
+    color: #FAFAFA;
+}
+
+.accentGray {
+    background-color: #607D8B;
+    color: #FAFAFA;
+}
+
+.accentBlue {
+    background-color: #0288D1;
+    color: #FAFAFA;
+}
+
+.backgroundWhite {
+    background-color: #FAFAFA;
+    color: #5D4037;
+}
+
+.home-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Probable element stylings for use in components */
+
+/* Warning Messages */
+.warning {
+    background-color: #D32F2F;
+    color: #FAFAFA;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Success Messages */
+.success {
+    background-color: #689F38;
+    color: #FAFAFA;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Placeholder Text */
+input::placeholder {
+    color: #607D8B;
+}
+
+/* Hyperlinks */
+a:hover {
+    color: #0288D1;
+}
+
+/* Content Cards */
+.card {
+    background-color: #FAFAFA;
+    border: 1px solid #607D8B;
+    padding: 20px;
+    border-radius: 4px;
+}

@@ -1,0 +1,85 @@
+/* NAVIGATION GRID LAYOUT */
+
+.navbar-grid {
+    display: grid;
+    grid-template-columns: 2fr auto 2fr; /* Brand | Spacer | Links */
+    align-items: center; /* Vertically center items */
+    background-color: #5D4037;
+    color: #FAFAFA;
+    padding: 1rem;
+    max-width: 100%;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-size: 5rem;
+    color: #EBEBEB;
+    text-decoration: none;
+    margin-left: .1rem;
+    cursor: pointer;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+}
+
+.navbar-brand:hover {
+    text-decoration: none;
+    color: #EBEBEB; /* Explicitly set color to prevent change on hover */
+}
+
+.navbar-brand:active, .navbar-brand.active {
+    pointer-events: none;
+}
+
+.navbar-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: .75rem;
+    grid-column-start: 3;
+    align-items: center;
+    list-style: none; /* Remove bullet points */
+}
+
+.nav-item {
+    color: #FAFAFA;
+    font-size: 2.5rem;
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s, border-bottom 0.3s;
+    padding: 1rem 1rem .25rem;
+    box-sizing: border-box;
+}
+
+.nav-item:hover {
+    color: #FFC107;
+    text-decoration: none; /* Removing underline on hover */
+    border-bottom: 2px solid #FFC107;
+}
+
+.nav-item:active, .nav-item.active {
+    background-color: rgba(93, 64, 55, 0.4);
+    pointer-events: none;
+}
+
+.nav-item.active:hover {
+    border-bottom: none;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 50em) {
+    .navbar-grid {
+       grid-template-columns: 1fr; /* Stack items */
+       grid-template-rows: auto auto; /* Brand and nav items */
+    }
+
+    .navbar-brand {
+       align-self: center;
+       justify-self: center;
+       margin-left: 0;
+    }
+
+    .navbar-nav {
+       justify-items: center;
+       grid-row-start: 2;
+       grid-column-start: 1;
+    }
+}

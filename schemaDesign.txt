@@ -1,0 +1,173 @@
+Dog Collection
+{
+  "_id": ObjectId,
+  "name": String, // index
+  "showName": String,
+  "weightClass": [Number],
+  "parents": {
+    "sire": ObjectId, // References Dog._id
+    "dam": ObjectId // References Dog._id
+  },
+  "birthday": Date,
+  "hometown": String,
+  "region": String, // E.g., "Northwest", "Northeast", "Southwest", "Southeast", "Central"   index
+  "uniqueFeatures": String,
+  "owners": [ 
+    {
+      "person": ObjectId, // References Person._id   index
+      "from": Date, // Start of ownership period
+      "to": Date // End of ownership period; null if current owner
+    },
+    ... 
+  ],
+  "photos": [String], // URLs
+  "pedigree": [ // Optionally precomputed pedigree
+    {"generation": Number, "sire": ObjectId, "dam": ObjectId},
+    ...
+  ],
+  "titles": [String]
+}
+
+Person Collection
+{
+  "_id": ObjectId,
+  "name": String, // index
+  "username": String, // Optional    index
+  "passwordHash": String, // Hashed password
+  "home": String,
+  "dogs": [ObjectId], // References Dog._id
+  "contact": {
+    "email": String,
+    "phone": String,
+    "address": String
+  },
+  "role": {
+    "handler": Boolean,
+    "judge": Boolean,
+    "owner": Boolean,
+    "organizer": Boolean,
+    "spectator": Boolean,
+    "onlineUser": Boolean
+  }
+}
+
+Match Collection
+{
+  "_id": ObjectId,
+  "participants": [
+    {"dog": ObjectId, "score": Number}, // dog indexed
+    ...
+  ],
+  "time": Date,
+  "specificLocation": String,
+  "photos": [
+    {"url": String, "dogs": [ObjectId]},
+    ...
+  ],
+  "videos": [
+    {"url": String, "dogs": [ObjectId]},
+    ...
+  ],
+  "type": String, // E.g., "Snow Pull", "Wheel Pull"
+  "judges": [ObjectId], // References Person._id
+  "weightClass": Number,
+  "event": ObjectId // References Event._id    index
+}
+
+Event Collection
+{
+  "_id": ObjectId,
+  "name": String,
+  "location": String,
+  "startDate": Date,
+  "endDate": Date,
+  "dogs": [ObjectId], // References Dog._id
+  "organizers": [ObjectId], // References Person._id
+  "type": String // E.g., "Local", "Regional", "National", "International"
+}
+
+MatchHistory Collection
+{
+  "_id": ObjectId,
+  "dog": ObjectId, // References Dog._id   index
+  "match": ObjectId, // References Match._id
+  "time": Date,
+  "score": Number,
+  "weightClass": Number,
+  "status": String, // E.g., "Provisional", "Novice", "Sanctioned"
+  "success": Boolean
+}
+
+JudgeScoreCard Collection
+{
+  "_id": ObjectId,
+  "judge": ObjectId, // References Person._id
+  "match": ObjectId, // References Match._id
+  "scores": [
+    {"dog": ObjectId, "score": Number},
+    ...
+  ],
+  "submitted": Boolean,
+  "timestamp": Date
+}
+
+
+User Stories:
+
+
+Handlers & Owners:
+1. Dog Registration & Profile Management:
+    As a dog owner, I want to register my dog's profile so that I can participate in events.
+    As a dog owner, I want to update my dog's profile with new information, such as achievements or updated weight classes.
+    As a handler, I want to register my dog for upcoming events easily.
+
+2. Event Participation & Management:
+    As a handler, I want to register for an event and check the schedule.
+    As an owner, I want to view all the matches my dog participated in to analyze performance over time.
+
+3. Dog Analytics & Insights:
+    As a user, I want to view a dog's pedigree, achievements, and match history.
+    As a user, I want to view rankings of dogs based on points/scores across seasons or specific events.
+
+
+Judges & Scorekeepers:
+1. Scoring & Verification:
+    As a judge, I want to score matches in real-time and submit the scores for verification.
+    As a scorekeeper, I want to mark scores as 'tentative' or 'final' to ensure spectators are informed but also aware of pending verifications.
+    As a judge, if there's a dispute or a close call, I want to flag it for a review to maintain the integrity of the results.
+    As a judge, I want a simple interface to input scores quickly and accurately.
+
+Spectators & Fans:
+1. Viewing & Notifications:
+    As a spectator, I want to view live scores so I can keep track of my favorite dogs' performance.
+    As a fan, I want to receive live notifications about match results so I'm always updated.
+    As a spectator, I want to view a dog's profile, including its past performances, so I can better understand its track record.
+    As a fan, I want to search for dogs, handlers, or events so I can quickly find information relevant to my interests.
+
+2. Media Access:
+    As a user, I want to view photos and videos of matches, so I can relive moments or analyze specific events.
+
+
+Event Organizers:
+1. Event Creation & Management:
+    As an event organizer, I want to create and manage events, including assigning judges and participants.
+    As an event organizer, I want to manage event registrations, confirm participating dogs, and communicate with handlers or owners.
+
+2. Event Analytics:
+    As an organizer, I want to view analytics of an event, like the number of participants, spectators, and overall engagement to understand its success and areas of improvement.
+
+
+General Users:
+1. Profile Management & Notifications:
+    As a user, I want to create an account and maintain a profile so I can manage my dogs, register for events, and stay updated.
+    As a user, I want to receive notifications about events, match results, and other relevant updates tailored to my interests.
+2. Community Interaction:
+    As a member of the dog pull community, I want a space to discuss events, share insights, and connect with other enthusiasts.
+
+
+Admins:
+1. Data Integrity & Backups:
+    As an admin, I want automated data backups to ensure data integrity and recovery in case of failures.
+2. User & Content Management:
+    As an admin, I want tools to manage user accounts, handle disputes, and ensure a positive community environment.
+    As an admin, I want tools to moderate user-generated content like comments, photos, and videos to ensure they adhere to community guidelines.
