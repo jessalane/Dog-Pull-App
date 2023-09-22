@@ -2,17 +2,37 @@
 
 .navbar-grid {
     display: grid;
-    grid-template-columns: 2fr auto 2fr; /* Brand | Spacer | Links */
-    align-items: center; /* Vertically center items */
+    grid-template-columns: 0 1fr auto 2fr; /* Hamburger | Brand | Spacer | Links */
+    align-items: center;
     background-color: #5D4037;
     color: #FAFAFA;
-    padding: 1rem;
+    padding: 0 1rem;
     max-width: 100%;
-    text-align: center;
+    grid-template-areas: 
+    "hamburger brand spacer nav nav";
+}
+
+
+.hamburger {
+    display: none; 
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+               align-items: left;
+    justify-content: left;
+    text-align: left;
+    margin-left: 5%;
+    grid-area: hamburger;
+}
+
+.bar {
+    height: 4px;
+    width: 25px;
+    background-color: #FAFAFA;
 }
 
 .navbar-brand {
-    font-size: 5rem;
+    font-size: 3.75rem;
     color: #EBEBEB;
     text-decoration: none;
     margin-left: .1rem;
@@ -20,6 +40,13 @@
     align-items: left;
     justify-content: left;
     text-align: left;
+    grid-area: brand;
+    @media (max-width: 768px){
+        font-size: 3rem;
+    }
+    @media (max-width: 500px){
+        font-size: 2rem;
+    }
 }
 
 .navbar-brand:hover {
@@ -27,48 +54,168 @@
     color: #EBEBEB; /* Explicitly set color to prevent change on hover */
 }
 
-.navbar-brand:active, .navbar-brand.active {
+
+
+/* .navbar-brand:active, .navbar-brand.active {
     pointer-events: none;
-}
+} */
 
 .navbar-nav {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, auto));
     gap: .75rem;
     grid-column-start: 3;
-    align-items: center;
-    list-style: none; /* Remove bullet points */
+    list-style: none;
+    text-align: right;    
+    height: 100%;
+    transition: max-height 0.3s ease-in-out;
+    grid-area: nav;
 }
 
 .nav-item {
     color: #FAFAFA;
-    font-size: 2.5rem;
+    white-space: nowrap;
+    font-size: 100%;
+    width: max-content;
+    text-align: center;
     text-decoration: none;
     transition: color 0.3s, background-color 0.3s, border-bottom 0.3s;
-    padding: 1rem 1rem .25rem;
+    padding: .25rem;
     box-sizing: border-box;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    @media (max-width: 500px){
+        font-size: 1rem;
+    }
 }
+
+/* .grid-section {
+    display: flex;
+    align-items: center;
+    height: 100%;
+} */
 
 .nav-item:hover {
     color: #FFC107;
-    text-decoration: none; /* Removing underline on hover */
+    text-decoration: none;
     border-bottom: 2px solid #FFC107;
 }
 
-.nav-item:active, .nav-item.active {
-    background-color: rgba(93, 64, 55, 0.4);
-    pointer-events: none;
-}
+.active-link-grid{
+    background-color: rgba(255, 255, 255, 0.2);
+    /* pointer-events: none; */
+} 
 
 .nav-item.active:hover {
     border-bottom: none;
 }
 
+/* .full-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+} */
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+}
+
+.force-show {
+  display: block;
+  border-top: 2px solid #FFC107;
+  /* border-bottom: 2px solid #FFC107; */
+  max-height: 300px;
+}
+
+.arrow-icon {
+  display: inline-block;
+  transition: transform 0.3s;
+  color: #FFC107;
+}
+
+.arrow-icon.down {
+  transform: rotate(0deg);
+}
+
+.arrow-icon.up {
+  transform: rotate(-180deg);
+}
+
+.nav-item.dropdown-label{
+  border-bottom-color: transparent;
+}
+
+.dropdown:hover{
+  cursor: pointer;
+  color: #FFC107;
+  transition: color 0.3s, background-color 0.3s, border-bottom 0.3s;
+}
+
+.navbar-nav, .dropdown-menu {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.dropdown-menu {
+    border-radius: 5px;
+    max-height: auto;
+  overflow: hidden;
+  transition: max-height .5s ease-in-out;
+}
+
+.dropdown-menu:not(.force-show) {
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 0;
+  background-color: #5D4037;
+  border: 1px solid #ffffff;
+  padding: 0.5rem;
+  z-index: 1000;
+  width: max-content;
+  list-style: none;
+}
+
+.dropdown-menu li {
+  margin: 0.5rem 0;
+}
+
+.dropdown-menu li a {
+  color: #FAFAFA;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.dropdown-menu li a:hover {
+  color: #FFC107;
+  text-decoration: none; 
+  border-bottom: 2px solid #FFC107;
+  transition: color 0.3s, background-color 0.3s, border-bottom 0.3s;
+}
+
+.grid-link {
+    display: block;
+    padding: .25rem;
+    box-sizing: border-box;
+}
+
 /* RESPONSIVENESS */
-@media (max-width: 50em) {
+@media (max-width: 1080px) {
     .navbar-grid {
-       grid-template-columns: 1fr; /* Stack items */
-       grid-template-rows: auto auto; /* Brand and nav items */
+       grid-template-columns: 0 1fr; /* Stack items */
+       grid-template-rows: auto; /* Brand and nav items */
+       grid-template-areas: 
+        "hamburger brand"
+        "nav nav";
     }
 
     .navbar-brand {
@@ -81,5 +228,54 @@
        justify-items: center;
        grid-row-start: 2;
        grid-column-start: 1;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+    .navbar-nav {
+        display: grid;
+    }
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+}
+
+@media (max-width: 768px) {
+.navbar-grid {
+   grid-template-columns: auto auto;
+   grid-template-rows: auto;
+   grid-template-areas: 
+    "hamburger brand"
+    "nav nav";
+}
+
+     .navbar-nav {
+      display: none;
+   }
+       [data-open="true"] .navbar-nav {
+    display:grid
+}
+
+  .hamburger {
+    display: flex;
+  }
+
+     .navbar-brand {
+       align-self: center;
+       justify-self: center;
+       margin-left: 0;
+    }
+
+    .navbar-nav {
+      justify-items: center;
+      grid-template-columns: max-content;
+      grid-row-start: 2;
+      grid-column-start: 1;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 }
