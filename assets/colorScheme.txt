@@ -1,0 +1,13 @@
+Deep Brown (#5D4037): Represents the earthiness and natural element of dogs. This can be a primary color used for backgrounds, headers, or other significant areas.
+
+Rich Gold (#FFC107): Signifies trophies, medals, and the spirit of competition. It brings attention to important buttons, call-to-actions, or highlights.
+
+Muscle Red (#D32F2F): Symbolizes strength, passion, and determination. This can be a color for notifications, warnings, or secondary call-to-actions.
+
+Grassy Green (#689F38): Captures the outdoor element of dog pull events. It can be used for minor accents or as a color to break the monotony.
+
+Slate Gray (#607D8B): Offers a neutral tone which represents stability and can be used for text, borders, or other miscellaneous elements.
+
+Sky Blue (#0288D1): Represents the openness of the outdoors and can be used for hyperlinks, icons, or other small UI elements.
+
+Ivory White (#FAFAFA): Provides a clean backdrop and can be used for backgrounds, cards, or content areas.
