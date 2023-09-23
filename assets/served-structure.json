@@ -1,0 +1,107 @@
+Dog Collection
+{
+  "_id": ObjectId,
+  "name": String, // index
+  "showName": String,
+  "weightClass": [Number],
+  "parents": {
+    "sire": ObjectId, // References Dog._id
+    "dam": ObjectId // References Dog._id
+  },
+  "birthday": Date,
+  "hometown": String,
+  "region": String, // E.g., "Northwest", "Northeast", "Southwest", "Southeast", "Central"   index
+  "uniqueFeatures": String,
+  "owners": [
+    {
+      "person": ObjectId, // References Person._id   index
+      "from": Date, // Start of ownership period
+      "to": Date // End of ownership period; null if current owner
+    },
+    ...
+  ],
+  "photos": [String], // URLs
+  "pedigree": [ // Optionally precomputed pedigree
+    {"generation": Number, "sire": ObjectId, "dam": ObjectId},
+    ...
+  ],
+  "titles": [String]
+}
+Person Collection
+{
+  "_id": ObjectId,
+  "name": String, // index
+  "username": String, // Optional    index
+  "passwordHash": String, // Hashed password
+  "home": String,
+  "dogs": [ObjectId], // References Dog._id
+  "contact": {
+    "email": String,
+    "phone": String,
+    "address": String
+  },
+  "role": {
+    "handler": Boolean,
+    "judge": Boolean,
+    "owner": Boolean,
+    "organizer": Boolean,
+    "spectator": Boolean,
+    "onlineUser": Boolean
+  }
+}
+Match Collection
+{
+  "_id": ObjectId,
+  "participants": [
+    {"dog": ObjectId, "score": Number}, // dog indexed
+    ...
+  ],
+  "time": Date,
+  "specificLocation": String,
+  "photos": [
+    {"url": String, "dogs": [ObjectId]},
+    ...
+  ],
+  "videos": [
+    {"url": String, "dogs": [ObjectId]},
+    ...
+  ],
+  "type": String, // E.g., "Snow Pull", "Wheel Pull"
+  "judges": [ObjectId], // References Person._id
+  "weightClass": Number,
+  "event": ObjectId // References Event._id    index
+}
+Event Collection
+{
+  "_id": ObjectId,
+  "name": String,
+  "location": String,
+  "startDate": Date,
+  "endDate": Date,
+  "dogs": [ObjectId], // References Dog._id
+  "organizers": [ObjectId], // References Person._id
+  "type": String // E.g., "Local", "Regional", "National", "International"
+}
+MatchHistory Collection
+{
+  "_id": ObjectId,
+  "dog": ObjectId, // References Dog._id   index
+  "match": ObjectId, // References Match._id
+  "time": Date,
+  "score": Number,
+  "weightClass": Number,
+  "status": String, // E.g., "Provisional", "Novice", "Sanctioned"
+  "success": Boolean
+}
+JudgeScoreCard Collection
+{
+  "_id": ObjectId,
+  "judge": ObjectId, // References Person._id
+  "match": ObjectId, // References Match._id
+  "scores": [
+    {"dog": ObjectId, "score": Number},
+    ...
+  ],
+  "submitted": Boolean,
+  "timestamp": Date
+}
