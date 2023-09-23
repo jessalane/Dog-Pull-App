@@ -1,0 +1,31 @@
+.carousel-container {
+  display: flex;
+  align-items: center;
+}
+
+.carousel-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.carousel-list-container {
+  overflow: auto;
+}
+
+.carousel-list {
+  display: flex;
+}
+
+.score-strip-game {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.more-info-link {
+  text-decoration: none;
+  color: #0073e6;
+  font-weight: bold;
+}
+

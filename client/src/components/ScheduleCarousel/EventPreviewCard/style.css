@@ -1,0 +1,47 @@
+.event-preview-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.event-preview-card:hover {
+    background-color: #e9e9e9;
+}
+
+.info-container {
+    display: grid;
+    grid-template-areas: 
+    "date-region location"
+    "type-status novice-practice"
+    "more-info more-info";
+}
+
+.date-region,
+.location,
+.type-status,
+.novice-practice,
+.more-info {
+    margin-right: 20px;
+}
+
+.date-region span,
+.location span,
+.type-status span,
+.novice-practice span {
+    display: block;
+}
+
+.more-info .info-link {
+    text-decoration: none;
+    color: #0073e6;
+    font-weight: bold;
+}
+
+.hover-highlight {
+    display: none;
+}
